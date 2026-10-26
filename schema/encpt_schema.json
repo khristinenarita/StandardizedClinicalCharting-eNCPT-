@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "eNCPT Standardized Clinical Charting Schema",
+  "type": "object",
+  "properties": {
+    "encounter_id": { "type": "string" },
+    "patient_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nutrition_assessment": {
+      "type": "object",
+      "properties": {
+        "anthropometrics": { "type": "array" },
+        "biochemical": { "type": "array" }
+      },
+      "required": ["anthropometrics", "biochemical"]
+    },
+    "nutrition_diagnosis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "problem_code": { "type": "string" },
+          "problem_term": { "type": "string" },
+          "etiology": { "type": "string" },
+          "signs_symptoms": { "type": "array", "items": { "type": "string" } },
+          "pes_statement": { "type": "string" }
+        },
+        "required": ["problem_code", "problem_term", "etiology", "signs_symptoms", "pes_statement"]
+      }
+    },
+    "nutrition_intervention": { "type": "array" },
+    "monitoring_evaluation": { "type": "array" }
+  },
+  "required": [
+    "encounter_id",
+    "patient_id",
+    "timestamp",
+    "nutrition_assessment",
+    "nutrition_diagnosis",
+    "nutrition_intervention",
+    "monitoring_evaluation"
+  ]
+}
